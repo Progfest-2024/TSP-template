@@ -1,0 +1,8 @@
+matplotlib==3.8.0
+networkx==3.2.1
+numpy>=1.26.1
+psutil==5.9.6
+pycodestyle==2.11.1
+PythonBasicTools==0.0.1a10
+tqdm==4.66.1
+requests==2.31.0
