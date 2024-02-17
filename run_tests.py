@@ -4,7 +4,7 @@ import sys
 import warnings
 from importlib import import_module
 
-import pythonbasictools as pbt
+import gdown
 
 from tools.tester import PerformanceTestCase, Tester, PEP8TestCase, CheckNotAllowedLibrariesTestCase
 
@@ -21,10 +21,8 @@ def get_data(data_file_path: str = "./data/data.pkl"):
     if os.path.exists(data_file_path):
         return pickle.load(open(data_file_path, "rb"))
 
-    pbt.google_drive.GoogleDriveDownloader(
-        file_id="1R8TF0BdUbKF-Z6yiDPNFIFo91ewvPxF2",
-        dest_path=data_file_path,
-    ).download()
+    url = 'https://drive.google.com/uc?id=1R8TF0BdUbKF-Z6yiDPNFIFo91ewvPxF2'
+    gdown.download(url, data_file_path, quiet=False)
     return pickle.load(open(data_file_path, "rb"))
 
 
@@ -65,7 +63,7 @@ def main(root_folder: str, data_file_path: str = "./data/data.pkl"):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        input_folder = "."
+        input_folder = "src"
     else:
         input_folder = sys.argv[1]
     with warnings.catch_warnings():
