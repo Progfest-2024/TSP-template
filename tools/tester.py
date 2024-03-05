@@ -4,25 +4,7 @@ from typing import List, Optional, Union, Tuple
 
 import numpy as np
 import tqdm
-
-
-class TestResult:
-    def __init__(self, name: str, percent_value: float, message: str = ""):
-        self.name = name
-        self.percent_value = percent_value
-        self.message = message
-
-    def __str__(self):
-        _str = f'[{self.name}: {self.percent_value:.2f} %'
-        if self.message:
-            _str += f', ({self.message})'
-        _str += ']'
-        return _str
-
-
-class TestCase:
-    def run(self) -> TestResult:
-        pass
+from tac.perf_test_case import TestCase, TestResult
 
 
 class PerformanceTestCase(TestCase):
@@ -61,8 +43,9 @@ class PerformanceTestCase(TestCase):
             constructor_inputs: List[Tuple] = None,
             get_solution_mth_name: str,
             expected_solutions: List,
+            **kwargs,
     ):
-        self.name = name
+        super().__init__(name, **kwargs)
         self.cls_to_test = cls_to_test
         self.constructor_inputs = constructor_inputs if constructor_inputs is not None else []
         self.get_solution_mth_name = get_solution_mth_name
